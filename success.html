@@ -5,12 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Local Admin</title>
+    <title>Success!</title>
 
-    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
@@ -34,6 +31,11 @@
 
         .normalFont {
             font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        * {
+            padding: 0;
+            margin: 0
         }
 
         .wrapper {
@@ -98,14 +100,6 @@
             }
         }
     </style>
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -125,53 +119,54 @@
 
                 <div class="collapse navbar-collapse" id="example-nav-collapse">
                     <ul class="nav navbar-nav">
-                        <!-- 
-            <li><a href="#featuresTab"><span class="subFont"><strong>Features</strong></span></a></li>
-            <li><a href="#feedbackTab"><span class="subFont"><strong>Feedback</strong></span></a></li>
-            <li><a href="#"><span class="subFont"><strong>About</strong></span></a></li>
-        	-->
                     </ul>
-
-
-                    <button type="submit" class="btn btn-success navbar-right navbar-btn"><span class="normalFont"
-                            onclick="adminredirect()"><strong>Admin
-                                Panel</strong></span></button>
+                    <span class="normalFont"><a href="administrator.html"
+                            class="btn btn-success navbar-right navbar-btn"><strong>Admin Login</strong></a></span>
                 </div>
 
             </div> <!-- end of container -->
         </nav>
 
-        <div id="localtocentral">
-            <div class="container" style="padding-top:150px;">
-                <h1 class="specialHead">Hello! Local Administrator!</h1>
-                <hr>
-                <br>
-                <div class="row">
-                    <div class="col-12">
-                        <h3>Total votes received from your area: </h3>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="localresult" id="localresult">
-
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="localwinner" id="localwinner">
-
+        <div class="container" style="padding:100px;">
+            <div class="row">
+                <div class="col-sm-12" style="border:2px solid gray;">
+                    <div class="voterr" id="voterr">
+                        <div class="page-header">
+                            <h2 class="specialHead">Choose Your Candidate.</h2>
+                            <p class="normalFont">Prove your authencity of being a valid voter.</p>
                         </div>
-                    </div>
-                    <br>
-                    <div class="col">
-                        <button type="submit" class="btn btn-block span btn-primary " id="votesent"><span
-                                class="glyphicon glyphicon-user"></span> Share Results to Central Admin</button>
+
+                        <form>
+                            <div class="form-group">
+                                <label>Voter's registered Email ID:</label><br>
+                                <!--pattern="[A-Za-z]{6,}"-->
+                                <!--pattern="[0-9].{6,}"-->
+                                <input type="email" name="voterName" title="Enter Your Full Name"
+                                    placeholder="Enter your registered Email ID" id="voterEmailID" class="form-control"
+                                    required /><br>
+
+                                <label>Password :</label><br>
+                                <input id="voterPassword" type="password" name="voterID"
+                                    placeholder="Enter Your  password" id="voterID" class="form-control" required /><br>
+
+                                <h3 class="normalFont">Vote for Your Candidate</h3>
+                                <div class="radio">
+                                    <div id="candidateshere">
+
+                                    </div>
+                                    <br>
+                                    <hr>
+                                    <button type="button" name="submit" class="btn btn-primary"
+                                        id="votebtn"><strong>Submit</strong></button>
+                                    <button type="submit" name="decline" class="btn btn-default"
+                                        onclick="declinevote()">Decline</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     <footer>
         <div class="container">
@@ -201,79 +196,39 @@
             </div>
         </div>
     </footer>
-    <script>
-        var p1 = sessionStorage.getItem('siteAdminData');
-        var p2 = JSON.parse(p1);
-        console.log(p2);
-        var p = p2["results"];
-        console.log(p);
-        var divid = document.getElementById("localresult");
-        // var htmlText = p.map(function (o) {
-        //     return `
-        //         <div class="col-sm-6 text-center">
-        //         <h4>${o.choice}</h4>
-        //         </div>
-        //         <div class="col-sm-6 text-center">
-        //         <h4>${o.count}</h4>
-        //         </div>
-        //     `;
-        // });
-        var wincount = -1;
-        var winname;
-        for (var i = 0; i < p.length; i++) {
-            divid.innerHTML = divid.innerHTML + `<div class="col-sm-6 text-center">
-                 <h4>${p[i].choice}</h4>
-                 </div>
-                 <div class="col-sm-6 text-center">
-                 <h4>${p[i].count}</h4>
-                 </div>`;
-            if (p[i].count > wincount) {
-                wincount = p[i].count;
-                winname = p[i].choice;
-            }
-        }
-        var winner = document.getElementById("localwinner");
-        winner.innerHTML = `
-        <div class="col-sm-6">
-        <h3>Winner of the election: </h3>
-        </div>
-        <div class="col-sm-6 text-right">
-        <h3>${winname} </h3>
-        </div>
-        `
-        // divid.innerHTML = htmlText;
-    </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script>
+        var win = sessionStorage.getItem("votervote");
+        var w1 = JSON.parse(win);
+        console.log(w1);
+        var votr = document.getElementById("voterr")
+
+        votr.innerHTML = `<div class="wrapper" style="background-color: white";> <svg class="checkmark"
+       mlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+  </svg>
+</div>
+<center>
+  <h2>And that's it!</h2>
+</center>
+<br>
+<center>
+  <h3>Name: ${w1.name}</h3>
+</center>
+<center>
+  <h3>Choice: ${w1.choice}</h3>
+</center>
+<br><br>
+<center>
+  <h4>Your vote has been registered! Thanks for playing your part of being a responsible citizen!</h4>
+</center>
+    `;
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="localadmin.js"></script>
+    <script src="vault.js"></script>
 </body>
 
 </html>
-<!--
-    <div class="col-sm-6 text-center">
-                            <h4 class="bjp">Bharatiya Janta Party</h4>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <h4 class="bjp" id="bjpcount">1</h4>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <h4 class="inc">Indian National Congress</h4>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <h4 class="inc" id="inccount">1</h4>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <h4 class="sp">Samajwadi Party</h4>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <h4 class="sp" id="spcount">1</h4>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <h4 class="bsp">Bahujan Samaj Party</h4>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <h4 class="bsp" id="bspcount">1</h4>
-                        </div>
--->

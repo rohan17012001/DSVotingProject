@@ -15,3 +15,6 @@ btn.addEventListener("click", async()=>{
 </center>
 `;
 });
+function adminredirect(){
+    window.open("administrator.html", '_self').focus();
+}

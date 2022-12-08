@@ -1,45 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Candidates- E-Voting System</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Candidates- E-Voting System</title>
 
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-      .headerFont{
-        font-family: 'Ubuntu', sans-serif;
-        font-size: 24px;
-      }
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
 
-      .subFont{
-        font-family: 'Raleway', sans-serif;
-        font-size: 14px;
-        
-      }
-      
-      .specialHead{
-        font-family: 'Oswald', sans-serif;
-      }
+  <style>
+    .headerFont {
+      font-family: 'Ubuntu', sans-serif;
+      font-size: 24px;
+    }
 
-      .normalFont{
-        font-family: 'Roboto Condensed', sans-serif;
-      }
-      cen {text-align: center;}
-    </style>
-  </head>
-  <body>
-	
-	<div class="container">
-  	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse
+    .subFont {
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px;
+
+    }
+
+    .specialHead {
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .normalFont {
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    cen {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse
     " role="navigation">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-nav-collapse">
@@ -54,64 +59,87 @@
         <div class="collapse navbar-collapse" id="example-nav-collapse">
           <ul class="nav navbar-nav">
           </ul>
-          
 
-          <span class="normalFont"><a href="administrator.html" class="btn btn-success navbar-right navbar-btn"><strong>Admin Login</strong></a></span>
+
+          <span class="normalFont"><a href="administrator.html"
+              class="btn btn-success navbar-right navbar-btn"><strong>Admin Login</strong></a></span>
         </div>
 
       </div> <!-- end of container -->
     </nav>
-
+    <div class="heading" style="padding-top: 100px;">
+      <h1 class="normalFont text-center" style="font-size: 50px;">Candidates</h1>
+    </div>
     <div class="container" style="padding:100px;">
       <div class="row">
-        <div class="col-sm-3">
-          <img src="images/pushkar.jpg" class="img img-thumbnail" style="width:200px;height:200px;" alt="">
-          <h4 class="normalFont text-center">Pushkar Singh Dhami</h4>
-          <h5 class="normalFont text-center">Current Chief Minister of Uttarakhand from BJP</h5>
-          <hr>
-        </div>
-        <div class="col-sm-3">
-          <img src="images/hrawat.jpg" class="img img-thumbnail" style="width:200px;height:200px;" alt="">
-          <h4 class="normalFont text-center">Harish Rawat</h4>
-          <h5 class="normalFont text-center">Former Chief Minister of Uttarakhand from Congress.</h5>
-            <hr>  
-          </h5>
-        </div>
-        <div class="col-sm-3">
-          <img src="images/kejriwal.jpg" class="img img-thumbnail" style="width:200px;height:200px;" alt="">
-          <h4 class="normalFont text-center">Arvind Kejriwal</h4>
-          <h5 class="text-center normalFont">Founder of Aam Admi Party and Current Chief Minister of New Delhi</h5>
-          <hr>
-        </div>
-        <div class="col-sm-3">
-          <img src="images/maywati.jpg" class="img img-thumbnail" style="width:200px;height:200px;" alt="">
-          <h4 class="normalFont text-center">Mayawati</h4>
-          <h5 class="normalFont text-center">From Bahujan Samaj Party.</h5>
-          <hr>
+        <div id="candidates">
+
         </div>
       </div>
     </div>
-    
-    <cen><u><h4><a href="index.html">Back to Home</a></h4></u></cen>
+
+    <cen><u>
+        <h4><a href="index.html">Back to Home</a></h4>
+      </u></cen>
     <footer>
       <div class="container">
         <div class="row">
           <div class="col text-center">
-          <cen><h4 class="specialHead">Project By:</h4></cen> 
+            <cen>
+              <h4 class="specialHead">Project By:</h4>
+            </cen>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3 col-6 text-center"><h4 class="specialHead">Ayushman Bajpayee</h4></div>
-          <div class="col-md-3 col-6 text-center"><h4 class="specialHead">Ravi Maurya</h4></div>
-          <div class="col-md-3 col-6 text-center"><h4 class="specialHead">Maurya Abhishek Kumar</h4></div>
-          <div class="col-md-3 col-6 text-center"><h4 class="specialHead">Rohan</h4></div>
-          <div class="col-12 text-center"><h4 class="specialHead">Jasmeet Chhabra</h4></div>
+          <div class="col-md-3 col-6 text-center">
+            <h4 class="specialHead">Ayushman Bajpayee</h4>
+          </div>
+          <div class="col-md-3 col-6 text-center">
+            <h4 class="specialHead">Ravi Maurya</h4>
+          </div>
+          <div class="col-md-3 col-6 text-center">
+            <h4 class="specialHead">Maurya Abhishek Kumar</h4>
+          </div>
+          <div class="col-md-3 col-6 text-center">
+            <h4 class="specialHead">Rohan</h4>
+          </div>
+          <div class="col-12 text-center">
+            <h4 class="specialHead">Jasmeet Chhabra</h4>
+          </div>
         </div>
       </div>
     </footer>
+    <script>
+      var p1 = sessionStorage.getItem('candidatelist');
+      var p2 = JSON.parse(p1);
+      console.log(p2);
+      var p = p2[0]["choice"];
+      console.log(p);
+      // var wincount = -1;
+      // var winname;
+      var divid = document.getElementById("candidates");
+      for (var i = 0; i < p2.length; i++) {
+        divid.innerHTML = divid.innerHTML + `<div class="col-md-3 col-12">
+            <h3 class="normalFont text-center">${p2[i].choice}</h3>
+            <hr>
+          </div>`;
+      }
+        // <img src="images/pushkar.jpg" class="img img-thumbnail" style="width:200px;height:200px;" alt="">
+        // <h5 class="normalFont text-center">Current Chief Minister of Uttarakhand from BJP</h5>
+        // var winner = document.getElementById("centralwinner");
+        // winner.innerHTML = `
+        // <div class="col-sm-6">
+        // <h3>Winner of the election: </h3>
+        // </div>
+        // <div class="col-sm-6 text-right">
+        // <h3>${winname} </h3>
+        // </div>
+        // `
+    </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-  </body>
+</body>
+
 </html>

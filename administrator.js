@@ -1,34 +1,56 @@
 const btn = document.getElementById("lvlcheck");
-btn.addEventListener("click", async ()=>{
-    if(document.getElementById("local").checked==true) loginform.innerHTML=`
-    <label for="">Username</label><br>
-                <input type="text" name="adminUserName" placeholder="Enter Admin's UserName" class="form-control"><br>
-
+btn.addEventListener("click", async () => {
+  if (document.getElementById("local").checked == true) loginform.innerHTML = `
+    <label for="">Email ID</label><br>
+                <input type="email" name="adminEmail" placeholder="Enter Admin's Email ID" id="localAdminEmailID" class="form-control"><br>
                 <label for="">Password</label><br>
-                <input type="password" name="adminPassword" class="form-control"
+                <input type="password" name="adminPassword" class="form-control" id="adminPassword" 
                   placeholder="Enter Admin's Password"><br>
-                  <label for="">Area</label><br>
-                  <input type="text" name="adminArea" placeholder="Enter the area name" class="form-control"><br>
   
 
-                <button type="submit" class="btn btn-block span btn-primary " onclick="localadmin()"><span
+                <button type="submit" class="btn btn-block span btn-primary " onclick="localadmin(document.getElementById('localAdminEmailID').value, document.getElementById('adminPassword').value)"><span
                     class="glyphicon glyphicon-user"></span> Sign In</button>
 `;
-    else if (document.getElementById("central").checked==true) loginform.innerHTML= `<label for="">Username</label><br>
-    <input type="text" name="adminUserName" placeholder="Enter Admin's UserName" class="form-control"><br>
+  else if (document.getElementById("central").checked == true) loginform.innerHTML = `<label for="">Email ID</label><br>
+    <input type="email" name="adminEmail" placeholder="Enter Admin's Email ID" class="form-control" id="centralAdminEmailID"><br>
 
     <label for="">Password</label><br>
     <input type="password" name="adminPassword" class="form-control"
-      placeholder="Enter Admin's Password"><br>
+      placeholder="Enter Admin's Password" id="adminPassword"><br>
 
-    <button type="submit" class="btn btn-block span btn-primary" onclick="centraladmin()"><span
+    <button type="submit" class="btn btn-block span btn-primary" onclick="centraladmin(document.getElementById('centralAdminEmailID').value, document.getElementById('adminPassword').value)"><span
         class="glyphicon glyphicon-user"></span> Sign In</button>
 
 `;
 });
-function localadmin() {
-  window.open("localadmin.html", '_self').focus();
+async function localadmin(mail, pass) {
+  const rawResponse = await fetch('http://127.0.0.1:8000/pollSiteInfo/', {
+    method: 'POST',
+    headers: {
+      'Allow': 'POST, OPTIONS',
+      'Vary': 'Accept',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "email": mail, "password": pass })
+  });
+  const conn = await rawResponse.json();
+  console.log(conn);
+  sessionStorage.setItem("siteAdminData", JSON.stringify(conn));
+  window.location.href = 'localadmin.html';
 }
-function centraladmin() {
-  window.open("centraladmin.html", '_self').focus();
+async function centraladmin(mail, pass) {
+  const rawResponse = await fetch('http://127.0.0.1:8000/pollDetail/', {
+    method: 'POST',
+    headers: {
+      'Allow': 'POST, OPTIONS',
+      'Vary': 'Accept',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "email": mail, "password": pass, "poll_id": 1 })
+  });
+  const conn = await rawResponse.json();
+  console.log(conn);
+  alert(conn["description"]);
+  sessionStorage.setItem("siteAdminData", JSON.stringify(conn));
+  window.location.href = 'centraladmin.html';
 }

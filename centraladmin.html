@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Local Admin</title>
+    <title>Central Admin</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -71,8 +71,8 @@
                     </ul>
 
 
-                    <button type="submit" class="btn btn-success navbar-right navbar-btn"><span
-                            class="normalFont"><strong>Admin
+                    <button type="submit" class="btn btn-success navbar-right navbar-btn"><span class="normalFont"
+                            onclick="adminredirect()"><strong>Admin
                                 Panel</strong></span></button>
                 </div>
 
@@ -86,43 +86,24 @@
             <br>
             <div class="row">
                 <div class="col-12">
-                    <h3>Total areas won by each party: </h3>
+                    <h3>Total votes by each party: </h3>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-sm-6 text-center">
-                    <h4 class="bjp">Bharatiya Janta Party</h4>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <h4 class="bjp" id="bjpcount">1</h4>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <h4 class="inc">Indian National Congress</h4>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <h4 class="inc" id="inccount">1</h4>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <h4 class="sp">Samajwadi Party</h4>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <h4 class="sp" id="spcount">1</h4>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <h4 class="bsp">Bahujan Samaj Party</h4>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <h4 class="bsp" id="bspcount">1</h4>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6"><h3>Winner of the election: </h3></div>
-                    <div class="col-sm-6 text-right"><h3>Bharatiya Janta Party </h3></div>
+                <div id="centralresult">
+
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div id="centralwinner">
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     </div>
     <footer>
@@ -153,7 +134,38 @@
             </div>
         </div>
     </footer>
-
+    <script>
+        var p1 = sessionStorage.getItem('siteAdminData');
+        var p2 = JSON.parse(p1);
+        console.log(p2);
+        var p = p2["results"];
+        console.log(p);
+        var wincount = -1;
+        var winname;
+        var divid = document.getElementById("centralresult")
+        for (var i = 0; i < p.length; i++) {
+            divid.innerHTML = divid.innerHTML + `<div class="col-sm-6 text-center">
+                 <h4>${p[i].choice}</h4>
+                 </div>
+                 <div class="col-sm-6 text-center">
+                 <h4>${p[i].count}</h4>
+                 </div>`;
+            if (p[i].count > wincount) {
+                wincount = p[i].count;
+                winname = p[i].choice;
+            }
+        }
+        var winner = document.getElementById("centralwinner");
+        winner.innerHTML = `
+        <div class="col-sm-6">
+        <h3>Winner of the election: </h3>
+        </div>
+        <div class="col-sm-6 text-right">
+        <h3>${winname} </h3>
+        </div>
+        `
+    </script>
+    <script src="centraladmin.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
